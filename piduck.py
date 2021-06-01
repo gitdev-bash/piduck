@@ -1,8 +1,13 @@
 #!/bin/python3
 import sys
+from importlib import import_module
 from time import sleep
 
-from pd_key_maps import keymap_US
+key_layout = "us"
+try:
+    import_module("pd_key_maps.keymap_" + key_layout)
+except ModuleNotFoundError:
+    exit(3)
 
 default_delay = 10
 string_delay = 10
