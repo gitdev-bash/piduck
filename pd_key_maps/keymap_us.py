@@ -1,5 +1,5 @@
 #!/bin/python3
-commap = {}
+commap = {"RSHIFT": 20}
 c1map = {
     "a": 4,
     "b": 5,
@@ -51,4 +51,5 @@ aliasmap = {
     "CTRL-SHIFT": "CTRL SHIFT",
     "DEFAULT_DELAY": "DEFAULTDELAY",
     "SPACE": " ",
+    "SHIFT": "RSHIFT",
 }
