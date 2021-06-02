@@ -1,5 +1,5 @@
 #!/bin/python3
-commap = {"RSHIFT": 20}
+commap = {}
 c1map = {
     "a": 4,
     "b": 5,
