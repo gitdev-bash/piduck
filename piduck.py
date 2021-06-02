@@ -65,7 +65,7 @@ def pharse(line, known, deltrue):
         default_delay = int(command[1])
         return
     elif command[0] in keymap.aliasmap:
-        pharse(keymap.aliasmap[command[0]] + " ".join(command[1:]), True)
+        pharse(keymap.aliasmap[command[0]] + " ".join(command[1:]), known, True)
         return
     elif command[0] in keymap.commap:
         known.append(commap[command[0]])
@@ -76,7 +76,7 @@ def pharse(line, known, deltrue):
         out(known)
         return
     elif command[0] in keymap.c2map:
-        pharse(keymap.c2map[command[0]] + " ".join(command[1:]), True)
+        pharse(keymap.c2map[command[0]] + " ".join(command[1:]), known, True)
         return
     else:
         exit(2)

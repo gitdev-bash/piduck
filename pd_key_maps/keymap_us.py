@@ -41,7 +41,7 @@ c1map = {
     "ESC": 41,
     "BACKSPACE": 42,
     "TAB": 43,
-    "SPACE": 44,
+    " ": 44,
 }
 c2map = {}
 for i in range(65, 91):
@@ -50,4 +50,5 @@ aliasmap = {
     "CTRL-ALT": "CTRL ALT",
     "CTRL-SHIFT": "CTRL SHIFT",
     "DEFAULT_DELAY": "DEFAULTDELAY",
+    "SPACE": " ",
 }
