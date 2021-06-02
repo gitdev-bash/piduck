@@ -1,16 +1,33 @@
 #!/bin/python3
-import sys
+# import sys
+import argparse
 from importlib import import_module
 from time import sleep
 
 key_layout = "us"
+default_delay = 10
+string_delay = 10
+
+piparser = argparse.ArgumentParser()
+piparser.add_argument("-i", "--input", help="File input")
+piparser.add_argument(
+    "-l", "--keyboardlayoutcode", help="Language codes specified by ISO639-1:2002"
+)
+piparser.add_argument("-d", "--defaultdelay", help="The default delay of execution")
+piparser.add_argument(
+    "-s", "--defaultchardelay", help="The default char delay of execution"
+)
+piargs = piparser.parse_args()
+if piargs.keyboardlayoutcode is not None:
+    key_layout = piargs.keyboardlayoutcode
+if piargs.defaultdelay is not None:
+    default_delay = piargs.defaultdelay
+if piargs.defaultchardelay is not None:
+    string_delay = piargs.defaultchardelay
 try:
     import_module("pd_key_maps.keymap_" + key_layout)
 except ModuleNotFoundError:
     exit(3)
-
-default_delay = 10
-string_delay = 10
 
 
 def divide_chunks(l, n):
@@ -75,16 +92,17 @@ def out(ccl):
         fd.write((chr(0) * 8).encode())
 
 
+# argparse fix
 def main():
-    if len(sys.argv) >= 2:
-        file1 = open(sys.argv[1], "r")
+    if piargs.input is not None:
+        file1 = open(piargs.input, "r")
         while True:
             line = file1.readline()
             if not line:
                 break
             pharse(line.strip(), [], False)
         file1.close()
-    elif len(sys.argv) == 1:
+    else:
         while True:
             line = input()
             if not line:
