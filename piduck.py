@@ -44,7 +44,10 @@ def string(string):
 def pharse(line, known, deltrue):
     global default_delay
     global string_delay
-    command = line.split()
+    if line != " ":
+        command = line.split()
+    else:
+        command = [" "]
     if not deltrue:
         if command[0] == "DELAY":
             sleep(int(command[1]) / 100)
@@ -76,7 +79,7 @@ def pharse(line, known, deltrue):
         out(known)
         return
     elif command[0] in keymap.c2map:
-        pharse(keymap.c2map[command[0]] + " ".join(command[1:]), known, True)
+        pharse(keymap.c2map[command[0]], known, True)
         return
     else:
         exit(2)
