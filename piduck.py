@@ -25,7 +25,7 @@ if piargs.defaultdelay is not None:
 if piargs.defaultchardelay is not None:
     string_delay = piargs.defaultchardelay
 try:
-    import_module("pd_key_maps.keymap_" + key_layout)
+    keymap = import_module("pd_key_maps.keymap_" + key_layout)
 except ModuleNotFoundError:
     exit(3)
 
@@ -64,16 +64,19 @@ def pharse(line, known, deltrue):
     elif command[0] == "DEFAULTDELAY":
         default_delay = int(command[1])
         return
-    elif command[0] in aliasmap:
-        pharse(aliasmap[command[0]] + " ".join(command[1:]), True)
+    elif command[0] in keymap.aliasmap:
+        pharse(keymap.aliasmap[command[0]] + " ".join(command[1:]), True)
         return
-    elif command[0] in commap:
+    elif command[0] in keymap.commap:
         known.append(commap[command[0]])
-        pharse(" ".join(command[1:]), known, True)
+        pharse(" ".join(keymap.command[1:]), known, True)
         return
-    elif command[0] in c1map:
-        known.append(c1map[command[0]])
+    elif command[0] in keymap.c1map:
+        known.append(keymap.c1map[command[0]])
         out(known)
+        return
+    elif command[0] in keymap.c2map:
+        pharse(keymap.c2map[command[0]] + " ".join(command[1:]), True)
         return
     else:
         exit(2)
