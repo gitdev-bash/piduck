@@ -6,7 +6,6 @@ The function `REPEAT`, Control keys and other special character and keys are mis
 
 ## Contributions
 All contributions are welcome!
-
 ## Setup
 ### HID Setup
 [Source1][Hid-setup-source1]
