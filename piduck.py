@@ -87,12 +87,17 @@ def pharse(line, known, deltrue):
 
 def out(ccl):
     # ccl_part=list(divide_chunks(ccl, n))
-    rep = chr(0) * 2
     i = 2
-    for e in ccl:
-        i += 1
-        rep = rep + chr(e)
-    rep = rep + (chr(0) * (8 - i))
+    if len(ccl) == 1:
+        rep = (chr(0) * 2) + chr(ccl[0])
+        e = 3
+    else:
+        rep = ""
+        for e in range(len(ccl) - 1):
+            rep = rep + chr(ccl[e])
+        e = e + 2
+        rep = rep + chr(0) + chr(ccl[e - 1])
+    rep = rep + (chr(0) * (8 - e))
     with open("/dev/hidg0", "rb+") as fd:
         fd.write(rep.encode())
         fd.write((chr(0) * 8).encode())

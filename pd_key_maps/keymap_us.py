@@ -1,5 +1,14 @@
 #!/bin/python3
-commap = {}
+commap = {
+    "LCTRL": 1,
+    "LSHIFT": 2,
+    "LALT": 4,
+    "LMETA": 8,
+    "RCTRL": 16,
+    "RSHIFT": 32,
+    "RALT": 64,
+    "RMETA": 128,
+}
 c1map = {
     "a": 4,
     "b": 5,
@@ -41,15 +50,19 @@ c1map = {
     "ESC": 41,
     "BACKSPACE": 42,
     "TAB": 43,
-    " ": 44,
+    "SPACE": 44,
 }
 c2map = {}
 for i in range(65, 91):
     c2map[chr(i)] = "SHIFT " + chr(i).lower()
 aliasmap = {
+    "CTRL": "LCTRL",
+    "SHIFT": "LSHIFT",
+    "ALT": "LALT",
+    "META": "LMETA",
+    "CONTROL": "CTRL",
     "CTRL-ALT": "CTRL ALT",
     "CTRL-SHIFT": "CTRL SHIFT",
     "DEFAULT_DELAY": "DEFAULTDELAY",
-    "SPACE": " ",
-    "SHIFT": "RSHIFT",
+    " ": "SPACE",
 }
