@@ -69,10 +69,11 @@ Also run these commands as root!
 Syntax of [Ducky-Script-v1][Ducky-Script-v1-Syntax]  
 Root is needed (again)
 ### Using Script File
-`piduck inject.txt`
+`piduck -i inject.txt`
 ### Input from standard input
 `piduck`
-
+### Set Layout
+`piduck -l xx`
 ## Disclamer
 This project may not be used illegally and i am not responsible for any damages made with or by this project.
 
