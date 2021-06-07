@@ -6,7 +6,7 @@ from time import sleep
 
 key_layout = "us"
 default_delay = 10
-string_delay = 10
+string_delay = 1
 
 piparser = argparse.ArgumentParser()
 piparser.add_argument("-i", "--input", help="File input")
