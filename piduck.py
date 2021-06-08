@@ -48,24 +48,24 @@ def pharse(line, known, deltrue):
         command = line.split()
     else:
         command = [" "]
-    if not deltrue:
-        if command[0] == "DELAY":
-            sleep(int(command[1]) / 100)
-            return
-        elif command[0] == "REM":
-            return
-        elif command[0] == "REPEAT":
-            return  # todo
-        else:
-            sleep(default_delay / 100)
-    if command[0] == "STRING":
-        string(" ".join(command[1:]))
+    if command[0] == "DELAY":
+        sleep(int(command[1]) / 100)
         return
+    elif command[0] == "REM":
+        return
+    elif command[0] == "REPEAT":
+        return  # todo
     elif command[0] == "DEFAULTCHARDELAY":
         string_delay = int(command[1])
         return
     elif command[0] == "DEFAULTDELAY":
         default_delay = int(command[1])
+        return
+    else:
+        if not deltrue:
+            sleep(default_delay / 100)
+    if command[0] == "STRING":
+        string(line[len("STRING "):])
         return
     elif command[0] in keymap.aliasmap:
         pharse(keymap.aliasmap[command[0]] + " " + " ".join(command[1:]), known, True)
