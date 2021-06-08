@@ -86,24 +86,21 @@ def pharse(line, known, deltrue):
 
 
 def out(ccl):
-    # ccl_part=list(divide_chunks(ccl, n))
-    i = 2
-    if len(ccl) == 1:
-        rep = (chr(0) * 2) + chr(ccl[0])
-        e = 3
-    else:
-        rep = ""
-        for e in range(len(ccl) - 1):
+    rep = ""
+    if len(ccl[0]) > 0:
+        for e in ccl[0]:
             rep = rep + chr(ccl[e])
-        e = e + 2
-        rep = rep + chr(0) + chr(ccl[e - 1])
-    rep = rep + (chr(0) * (8 - e))
+    else:
+        rep = rep + chr(0)
+    rep = rep + chr(0)
+    for e in ccl[1]:
+        rep = rep + chr(ccl[e])
+    rep = rep + chr(0) * (8 - len(rep))
     with open("/dev/hidg0", "rb+") as fd:
         fd.write(rep.encode())
         fd.write((chr(0) * 8).encode())
 
 
-# argparse fix
 def main():
     if piargs.input is not None:
         file1 = open(piargs.input, "r")
