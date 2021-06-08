@@ -32,7 +32,7 @@ except ModuleNotFoundError:
 
 def string(string):
     for char in string:
-        pharse(char, [], True)
+        pharse(char, [[], []], True)
         sleep(string_delay / 100)
 
 
