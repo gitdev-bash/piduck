@@ -30,11 +30,6 @@ except ModuleNotFoundError:
     exit(3)
 
 
-def divide_chunks(l, n):
-    for i in range(0, len(l), n):
-        yield l[i : i + n]
-
-
 def string(string):
     for char in string:
         pharse(char, [], True)
@@ -65,21 +60,21 @@ def pharse(line, known, deltrue):
         if not deltrue:
             sleep(default_delay / 100)
     if command[0] == "STRING":
-        string(line[len("STRING "):])
-        return
-    elif command[0] in keymap.aliasmap:
-        pharse(keymap.aliasmap[command[0]] + " " + " ".join(command[1:]), known, True)
+        string(line[len("STRING ") :])
         return
     elif command[0] in keymap.commap:
-        known.append(keymap.commap[command[0]])
+        known[0].append(keymap.commap[command[0]])
         pharse(" ".join(command[1:]), known, True)
         return
     elif command[0] in keymap.c1map:
-        known.append(keymap.c1map[command[0]])
+        known[1].append(keymap.c1map[command[0]])
         out(known)
         return
     elif command[0] in keymap.c2map:
         pharse(keymap.c2map[command[0]], known, True)
+        return
+    elif command[0] in keymap.aliasmap:
+        pharse(keymap.aliasmap[command[0]] + " " + " ".join(command[1:]), known, True)
         return
     else:
         exit(2)
@@ -108,14 +103,14 @@ def main():
             line = file1.readline()
             if not line:
                 break
-            pharse(line.strip(), [], False)
+            pharse(line.strip(), [[], []], False)
         file1.close()
     else:
         while True:
             line = input()
             if not line:
                 break
-            pharse(line.strip(), [], False)
+            pharse(line.strip(), [[], []], False)
 
 
 main()
