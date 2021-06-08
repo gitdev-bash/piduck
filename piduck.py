@@ -84,12 +84,12 @@ def out(ccl):
     rep = ""
     if len(ccl[0]) > 0:
         for e in ccl[0]:
-            rep = rep + chr(ccl[e])
+            rep = rep + chr(e)
     else:
         rep = rep + chr(0)
     rep = rep + chr(0)
     for e in ccl[1]:
-        rep = rep + chr(ccl[e])
+        rep = rep + chr(e)
     rep = rep + chr(0) * (8 - len(rep))
     with open("/dev/hidg0", "rb+") as fd:
         fd.write(rep.encode())
