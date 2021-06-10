@@ -74,6 +74,8 @@ Root is needed (again)
 `piduck`
 ### Set Layout
 `piduck -l xx`
+### Help
+`piduck -h`
 ## Disclamer
 This project may not be used illegally and i am not responsible for any damages made with or by this project.
 
