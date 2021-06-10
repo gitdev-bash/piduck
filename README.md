@@ -2,11 +2,10 @@
 Piduck is a program with which you can easily use your Raspberry Pi Zero as a USB HID keyboard. It uses the scripting language [Ducky-Script-v1].
 
 The Project is in Beta and help is needed.
-The function `REPEAT`, Control keys and other special character and keys are missing. For now, only the US keyboard layout is available.
+The function `REPEAT`, `FN` and other special character and keys are missing. For now, only the US keyboard layout is available.
 
 ## Contributions
 All contributions are welcome!
-
 ## Setup
 ### HID Setup
 [Source1][Hid-setup-source1]
@@ -70,10 +69,11 @@ Also run these commands as root!
 Syntax of [Ducky-Script-v1][Ducky-Script-v1-Syntax]  
 Root is needed (again)
 ### Using Script File
-`piduck inject.txt`
+`piduck -i inject.txt`
 ### Input from standard input
 `piduck`
-
+### Set Layout
+`piduck -l xx`
 ## Disclamer
 This project may not be used illegally and i am not responsible for any damages made with or by this project.
 
