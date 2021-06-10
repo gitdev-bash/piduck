@@ -1,5 +1,4 @@
-#!/bin/python3
-# import sys
+#!/usr/bin/env python
 import argparse
 from importlib import import_module
 from time import sleep
