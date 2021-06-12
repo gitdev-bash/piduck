@@ -136,7 +136,26 @@ c1map = {
     # volume-up:128,
     # volume-down:129,
 }
-c2map = {}
+c2map = {
+    "!": "SHIFT 1",
+    "@": "SHIFT 2",
+    "$": "SHIFT 4",
+    "%": "SHIFT 5",
+    "&": "SHIFT 7",
+    "*": "SHIFT 8",
+    "(": "SHIFT 9",
+    ")": "SHIFT 0",
+    "_": "SHIFT -",
+    "+": "SHIFT =",
+    "<": "SHIFT ,",
+    ">": "SHIFT .",
+    "?": "SHIFT /",
+    "'": 'SHIFT "',  # single or double?
+    ":": "SHIFT ;",
+    "{": "SHIFT [",
+    "}": "SHIFT ]",
+    "|": "SHIFT \\",
+}
 for i in range(65, 91):
     c2map[chr(i)] = "SHIFT " + chr(i).lower()
 aliasmap = {
