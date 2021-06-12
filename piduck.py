@@ -59,18 +59,24 @@ def pharse(line, known, deltrue):
         if not deltrue:
             sleep(default_delay / 100)
     if command[0] == "STRING":
-        string(line[len("STRING ") :])
+        string(line[len(command[0] + " ") :])
         return
     elif command[0] in keymap.commap:
         known[0].append(keymap.commap[command[0]])
-        pharse(" ".join(command[1:]), known, True)
+        if len(command) > 0:
+            pharse(" ".join(command[1:]), known, True)
+        else:
+            out(known)
         return
     elif command[0] in keymap.c1map:
         known[1].append(keymap.c1map[command[0]])
-        out(known)
+        if len(command) > 0:
+            pharse(" ".join(command[1:]), known, True)
+        else:
+            out(known)
         return
     elif command[0] in keymap.c2map:
-        pharse(keymap.c2map[command[0]], known, True)
+        pharse(keymap.c2map[command[0]] + " " + " ".join(command[1:]), known, True)
         return
     elif command[0] in keymap.aliasmap:
         pharse(keymap.aliasmap[command[0]] + " " + " ".join(command[1:]), known, True)
