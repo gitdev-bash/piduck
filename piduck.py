@@ -118,7 +118,7 @@ if __name__ == "__main__":
     key_layout = "us"
     default_delay = 10
     string_delay = 1
-    
+
     aliasmap = {
         "CTRL": "LCTRL",
         "SHIFT": "LSHIFT",
