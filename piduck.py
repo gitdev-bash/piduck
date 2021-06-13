@@ -123,6 +123,7 @@ def main():
             if not line:
                 break
             pharse(line.strip(), [[], []], False)
+            last_line = line
 
 
 main()
