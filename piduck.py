@@ -3,6 +3,7 @@ import argparse
 from importlib import import_module
 from time import sleep
 
+last_line = ""
 key_layout = "us"
 default_delay = 10
 string_delay = 1
@@ -38,16 +39,20 @@ def string(string):
 def pharse(line, known, deltrue):
     global default_delay
     global string_delay
-    if line != " ":
-        command = line.split()
-    else:
+    if line == "":
+        return
+    elif line == " ":
         command = [" "]
+    else:
+        command = line.split()
     if command[0] == "DELAY":
         sleep(int(command[1]) / 100)
         return
     elif command[0] == "REM":
         return
     elif command[0] == "REPEAT":
+        for i in range(int(command[1])):
+            pharse(last_line.strip(), [[], []], False)
         return  # todo
     elif command[0] == "DEFAULTCHARDELAY":
         string_delay = int(command[1])
@@ -63,14 +68,14 @@ def pharse(line, known, deltrue):
         return
     elif command[0] in keymap.commap:
         known[0].append(keymap.commap[command[0]])
-        if len(command) > 0:
+        if len(command) > 1:
             pharse(" ".join(command[1:]), known, True)
         else:
             out(known)
         return
     elif command[0] in keymap.c1map:
         known[1].append(keymap.c1map[command[0]])
-        if len(command) > 0:
+        if len(command) > 1:
             pharse(" ".join(command[1:]), known, True)
         else:
             out(known)
@@ -102,6 +107,7 @@ def out(ccl):
 
 
 def main():
+    global last_line
     if piargs.input is not None:
         file1 = open(piargs.input, "r")
         while True:
@@ -109,6 +115,7 @@ def main():
             if not line:
                 break
             pharse(line.strip(), [[], []], False)
+            last_line = line
         file1.close()
     else:
         while True:
@@ -116,6 +123,7 @@ def main():
             if not line:
                 break
             pharse(line.strip(), [[], []], False)
+            last_line = line
 
 
 main()
