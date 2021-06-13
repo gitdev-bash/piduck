@@ -2,6 +2,11 @@
 import argparse
 from importlib import import_module
 from time import sleep
+import sys
+
+
+def eprint(*args, **kwargs):
+    print(*args, file=sys.stderr, **kwargs)
 
 
 def string(string):
@@ -61,6 +66,7 @@ def pharse(line, known, deltrue):
         pharse(keymap.aliasmap[command[0]] + " " + " ".join(command[1:]), known, True)
         return
     else:
+        eprint('Could not find "' + command[0] + '"')
         exit(2)
 
 
@@ -125,6 +131,7 @@ if __name__ == "__main__":
     try:
         keymap = import_module("pd_key_maps.keymap_" + key_layout)
     except ModuleNotFoundError:
+        eprint('Keymap "' + key_layout + '" could not be found')
         exit(3)
     main()
     exit(0)
