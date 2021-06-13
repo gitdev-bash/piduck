@@ -68,14 +68,14 @@ def pharse(line, known, deltrue):
         return
     elif command[0] in keymap.commap:
         known[0].append(keymap.commap[command[0]])
-        if len(command) > 0:
+        if len(command) > 1:
             pharse(" ".join(command[1:]), known, True)
         else:
             out(known)
         return
     elif command[0] in keymap.c1map:
         known[1].append(keymap.c1map[command[0]])
-        if len(command) > 0:
+        if len(command) > 1:
             pharse(" ".join(command[1:]), known, True)
         else:
             out(known)
