@@ -7,6 +7,25 @@ key_layout = "us"
 default_delay = 10
 string_delay = 1
 
+aliasmap = {
+    "CTRL": "LCTRL",
+    "SHIFT": "LSHIFT",
+    "ALT": "LALT",
+    "META": "LMETA",
+    "CONTROL": "CTRL",
+    "GUI": "META",
+    "ESCAPE": "ESC",
+    "RIGHTARROW": "RIGHT",
+    "LEFTARROW": "LEFT",
+    "DOWNARROW": "DOWN",
+    "UPARROW": "UP",
+    "CTRL-ALT": "CTRL ALT",
+    "CTRL-SHIFT": "CTRL SHIFT",
+    "DEFAULT_DELAY": "DEFAULTDELAY",
+    " ": "SPACE",
+    "BREAK": "PAUSE",
+}
+
 piparser = argparse.ArgumentParser()
 piparser.add_argument("-i", "--input", help="File input")
 piparser.add_argument(
@@ -72,8 +91,8 @@ def pharse(line, known, deltrue):
     elif command[0] in keymap.c2map:
         pharse(keymap.c2map[command[0]], known, True)
         return
-    elif command[0] in keymap.aliasmap:
-        pharse(keymap.aliasmap[command[0]] + " " + " ".join(command[1:]), known, True)
+    elif command[0] in aliasmap:
+        pharse(aliasmap[command[0]] + " " + " ".join(command[1:]), known, True)
         return
     else:
         exit(2)

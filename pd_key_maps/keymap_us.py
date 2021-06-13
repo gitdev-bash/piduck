@@ -160,21 +160,3 @@ c2map = {
 }
 for i in range(65, 91):
     c2map[chr(i)] = "SHIFT " + chr(i).lower()
-aliasmap = {
-    "CTRL": "LCTRL",
-    "SHIFT": "LSHIFT",
-    "ALT": "LALT",
-    "META": "LMETA",
-    "CONTROL": "CTRL",
-    "GUI": "META",
-    "ESCAPE": "ESC",
-    "RIGHTARROW": "RIGHT",
-    "LEFTARROW": "LEFT",
-    "DOWNARROW": "DOWN",
-    "UPARROW": "UP",
-    "CTRL-ALT": "CTRL ALT",
-    "CTRL-SHIFT": "CTRL SHIFT",
-    "DEFAULT_DELAY": "DEFAULTDELAY",
-    " ": "SPACE",
-    "BREAK": "PAUSE",
-}
