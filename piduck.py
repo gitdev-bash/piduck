@@ -3,32 +3,6 @@ import argparse
 from importlib import import_module
 from time import sleep
 
-last_line = ""
-key_layout = "us"
-default_delay = 10
-string_delay = 1
-
-piparser = argparse.ArgumentParser()
-piparser.add_argument("-i", "--input", help="File input")
-piparser.add_argument(
-    "-l", "--keyboardlayoutcode", help="Language codes specified by ISO639-1:2002"
-)
-piparser.add_argument("-d", "--defaultdelay", help="The default delay of execution")
-piparser.add_argument(
-    "-s", "--defaultchardelay", help="The default char delay of execution"
-)
-piargs = piparser.parse_args()
-if piargs.keyboardlayoutcode is not None:
-    key_layout = piargs.keyboardlayoutcode
-if piargs.defaultdelay is not None:
-    default_delay = piargs.defaultdelay
-if piargs.defaultchardelay is not None:
-    string_delay = piargs.defaultchardelay
-try:
-    keymap = import_module("pd_key_maps.keymap_" + key_layout)
-except ModuleNotFoundError:
-    exit(3)
-
 
 def string(string):
     for char in string:
@@ -126,5 +100,31 @@ def main():
             last_line = line
 
 
-main()
-exit(0)
+if __name__ == "__main__":
+    last_line = ""
+    key_layout = "us"
+    default_delay = 10
+    string_delay = 1
+
+    piparser = argparse.ArgumentParser()
+    piparser.add_argument("-i", "--input", help="File input")
+    piparser.add_argument(
+        "-l", "--keyboardlayoutcode", help="Language codes specified by ISO639-1:2002"
+    )
+    piparser.add_argument("-d", "--defaultdelay", help="The default delay of execution")
+    piparser.add_argument(
+        "-s", "--defaultchardelay", help="The default char delay of execution"
+    )
+    piargs = piparser.parse_args()
+    if piargs.keyboardlayoutcode is not None:
+        key_layout = piargs.keyboardlayoutcode
+    if piargs.defaultdelay is not None:
+        default_delay = piargs.defaultdelay
+    if piargs.defaultchardelay is not None:
+        string_delay = piargs.defaultchardelay
+    try:
+        keymap = import_module("pd_key_maps.keymap_" + key_layout)
+    except ModuleNotFoundError:
+        exit(3)
+    main()
+    exit(0)
