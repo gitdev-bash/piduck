@@ -51,7 +51,7 @@ def pharse(line, known, deltrue):
     elif command[0] == "REM":
         return
     elif command[0] == "REPEAT":
-        for i in range(6):
+        for i in range(int(command[1])):
             pharse(last_line.strip(), [[], []], False)
         return  # todo
     elif command[0] == "DEFAULTCHARDELAY":
