@@ -2,32 +2,11 @@
 import argparse
 from importlib import import_module
 from time import sleep
+import sys
 
-last_line = ""
-key_layout = "us"
-default_delay = 10
-string_delay = 1
 
-piparser = argparse.ArgumentParser()
-piparser.add_argument("-i", "--input", help="File input")
-piparser.add_argument(
-    "-l", "--keyboardlayoutcode", help="Language codes specified by ISO639-1:2002"
-)
-piparser.add_argument("-d", "--defaultdelay", help="The default delay of execution")
-piparser.add_argument(
-    "-s", "--defaultchardelay", help="The default char delay of execution"
-)
-piargs = piparser.parse_args()
-if piargs.keyboardlayoutcode is not None:
-    key_layout = piargs.keyboardlayoutcode
-if piargs.defaultdelay is not None:
-    default_delay = piargs.defaultdelay
-if piargs.defaultchardelay is not None:
-    string_delay = piargs.defaultchardelay
-try:
-    keymap = import_module("pd_key_maps.keymap_" + key_layout)
-except ModuleNotFoundError:
-    exit(3)
+def eprint(*args, **kwargs):
+    print(*args, file=sys.stderr, **kwargs)
 
 
 def string(string):
@@ -51,9 +30,13 @@ def pharse(line, known, deltrue):
     elif command[0] == "REM":
         return
     elif command[0] == "REPEAT":
-        for i in range(int(command[1])):
-            pharse(last_line.strip(), [[], []], False)
-        return  # todo
+        try:
+            for i in range(int(command[1])):
+                pharse(last_line.strip(), [[], []], False)
+            return  # todo
+        except RecursionError:
+            eprint("You can not repeat the repeat")
+            exit(4)
     elif command[0] == "DEFAULTCHARDELAY":
         string_delay = int(command[1])
         return
@@ -87,6 +70,7 @@ def pharse(line, known, deltrue):
         pharse(keymap.aliasmap[command[0]] + " " + " ".join(command[1:]), known, True)
         return
     else:
+        eprint('Could not find "' + command[0] + '"')
         exit(2)
 
 
@@ -119,12 +103,45 @@ def main():
         file1.close()
     else:
         while True:
-            line = input()
+            try:
+                line = input()
+            except EOFError:
+                break
             if not line:
                 break
             pharse(line.strip(), [[], []], False)
             last_line = line
 
 
-main()
+if __name__ == "__main__":
+    last_line = ""
+    key_layout = "us"
+    default_delay = 10
+    string_delay = 1
+
+    piparser = argparse.ArgumentParser()
+    piparser.add_argument("-i", "--input", help="File input")
+    piparser.add_argument(
+        "-l", "--keyboardlayoutcode", help="Language codes specified by ISO639-1:2002"
+    )
+    piparser.add_argument("-d", "--defaultdelay", help="The default delay of execution")
+    piparser.add_argument(
+        "-s", "--defaultchardelay", help="The default char delay of execution"
+    )
+    piargs = piparser.parse_args()
+    if piargs.keyboardlayoutcode is not None:
+        key_layout = piargs.keyboardlayoutcode
+    if piargs.defaultdelay is not None:
+        default_delay = piargs.defaultdelay
+    if piargs.defaultchardelay is not None:
+        string_delay = piargs.defaultchardelay
+    try:
+        keymap = import_module("pd_key_maps.keymap_" + key_layout)
+    except ModuleNotFoundError:
+        eprint('Keymap "' + key_layout + '" could not be found')
+        exit(3)
+try:
+    main()
+except KeyboardInterrupt:
+    pass
 exit(0)
