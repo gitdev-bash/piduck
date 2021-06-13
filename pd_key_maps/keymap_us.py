@@ -137,6 +137,7 @@ c1map = {
     # volume-down:129,
 }
 c2map = {
+    "~": "SHIFT `",
     "!": "SHIFT 1",
     "@": "SHIFT 2",
     "#": "SHIFT 3",
