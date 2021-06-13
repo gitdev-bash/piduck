@@ -58,7 +58,7 @@ c1map = {
     "\\": 49,
     #    "#": 50, # wut
     ";": 51,
-    '"': 52,  # double(") or single(')?
+    "'": 52,  # double(") or single(')?
     "~": 53,  # (~) or (`)?
     ",": 54,
     ".": 55,
@@ -152,7 +152,7 @@ c2map = {
     "<": "SHIFT ,",
     ">": "SHIFT .",
     "?": "SHIFT /",
-    "'": 'SHIFT "',  # single or double?
+    '"': "SHIFT '",  # single or double?
     ":": "SHIFT ;",
     "{": "SHIFT [",
     "}": "SHIFT ]",
