@@ -101,7 +101,7 @@ def main():
         while True:
             try:
                 line = input()
-            except KeyboardInterrupt:
+            except EOFError:
                 break
             if not line:
                 break
