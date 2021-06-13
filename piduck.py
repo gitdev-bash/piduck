@@ -99,7 +99,10 @@ def main():
         file1.close()
     else:
         while True:
-            line = input()
+            try:
+                line = input()
+            except KeyboardInterrupt:
+                break
             if not line:
                 break
             pharse(line.strip(), [[], []], False)
@@ -133,5 +136,8 @@ if __name__ == "__main__":
     except ModuleNotFoundError:
         eprint('Keymap "' + key_layout + '" could not be found')
         exit(3)
+try:
     main()
-    exit(0)
+except KeyboardInterrupt:
+    pass
+exit(0)
