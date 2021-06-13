@@ -139,7 +139,7 @@ c1map = {
 c2map = {
     "!": "SHIFT 1",
     "@": "SHIFT 2",
-    "#": "SHIFT 3",  # (#) is double?
+    #    "#": "SHIFT 3",  # (#) is double?
     "$": "SHIFT 4",
     "%": "SHIFT 5",
     "^": "SHIFT 6",
