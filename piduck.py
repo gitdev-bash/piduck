@@ -3,6 +3,7 @@ import argparse
 from importlib import import_module
 from time import sleep
 
+last_line = ""
 key_layout = "us"
 default_delay = 10
 string_delay = 1
@@ -48,6 +49,8 @@ def pharse(line, known, deltrue):
     elif command[0] == "REM":
         return
     elif command[0] == "REPEAT":
+        for i in range(6):
+            pharse(last_line.strip(), [[], []], False)
         return  # todo
     elif command[0] == "DEFAULTCHARDELAY":
         string_delay = int(command[1])
@@ -102,6 +105,7 @@ def out(ccl):
 
 
 def main():
+    global last_line
     if piargs.input is not None:
         file1 = open(piargs.input, "r")
         while True:
@@ -109,6 +113,7 @@ def main():
             if not line:
                 break
             pharse(line.strip(), [[], []], False)
+            last_line = line
         file1.close()
     else:
         while True:
