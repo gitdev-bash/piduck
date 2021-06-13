@@ -30,9 +30,13 @@ def pharse(line, known, deltrue):
     elif command[0] == "REM":
         return
     elif command[0] == "REPEAT":
-        for i in range(int(command[1])):
-            pharse(last_line.strip(), [[], []], False)
-        return  # todo
+        try:
+            for i in range(int(command[1])):
+                pharse(last_line.strip(), [[], []], False)
+            return  # todo
+        except RecursionError:
+            eprint("You can not repeat the repeat")
+            exit(4)
     elif command[0] == "DEFAULTCHARDELAY":
         string_delay = int(command[1])
         return
