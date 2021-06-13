@@ -39,10 +39,12 @@ def string(string):
 def pharse(line, known, deltrue):
     global default_delay
     global string_delay
-    if line != " ":
-        command = line.split()
-    else:
+    if line == "":
+        return
+    elif line == " ":
         command = [" "]
+    else:
+        command = line.split()
     if command[0] == "DELAY":
         sleep(int(command[1]) / 100)
         return
