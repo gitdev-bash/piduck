@@ -33,7 +33,7 @@ def pharse_p1(line):
     elif command[0] == "REPEAT":
         try:
             for i in range(int(command[1])):
-                pharse_p2(last_line.strip(), [[], []], False)
+                pharse_p1(last_line)
         except RecursionError:
             eprint("RecursionError!")
             exit(4)
@@ -104,7 +104,6 @@ def out(ccl):
 
 
 def main():
-    global last_line
     if piargs.input is not None:
         file1 = open(piargs.input, "r")
         while True:
