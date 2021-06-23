@@ -104,7 +104,7 @@ def main():
     else:
         while True:
             try:
-                line = input()
+                line = input("d# ")
             except EOFError:
                 break
             if not line:
