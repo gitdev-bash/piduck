@@ -107,7 +107,7 @@ def main():
             try:
                 line = input("d# ")
             except EOFError:
-                print("exit")
+                print("EOF")
                 break
             if not line:
                 break
@@ -164,5 +164,6 @@ if __name__ == "__main__":
     try:
         main()
     except KeyboardInterrupt:
+        print("EOF")
         pass
     exit(0)
