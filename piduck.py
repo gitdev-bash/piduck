@@ -11,13 +11,14 @@ def eprint(*args, **kwargs):
 
 def string(string):
     for char in string:
-        pharse(char, [[], []], True)
+        pharse_p2(char, [[], []], True)
         sleep(string_delay / 100)
 
 
-def pharse(line, known, deltrue):
+def pharse_p1(line):
     global default_delay
     global string_delay
+    global last_line
     if line == "":
         return
     elif line == " ":
@@ -32,42 +33,54 @@ def pharse(line, known, deltrue):
     elif command[0] == "REPEAT":
         try:
             for i in range(int(command[1])):
-                pharse(last_line.strip(), [[], []], False)
-            return  # todo
+                pharse_p1(last_line)
         except RecursionError:
-            eprint("You can not repeat the repeat")
+            eprint("RecursionError!")
             exit(4)
+        return
     elif command[0] == "DEFAULTCHARDELAY":
         string_delay = int(command[1])
         return
     elif command[0] == "DEFAULTDELAY":
         default_delay = int(command[1])
         return
-    else:
-        if not deltrue:
-            sleep(default_delay / 100)
-    if command[0] == "STRING":
+    elif command[0] == "STRING":
+        sleep(default_delay / 100)  # DEFAULT_DELAY
         string(line[len(command[0] + " ") :])
+        last_line = line
         return
-    elif command[0] in keymap.commap:
+    else:
+        pharse_p2(line, [[], []], False)
+        last_line = line
+        return
+
+
+def pharse_p2(line, known, deltrue):
+    if line == "":
+        return
+    elif line == " ":
+        command = [" "]
+    else:
+        command = line.split()
+    if command[0] in keymap.commap:
         known[0].append(keymap.commap[command[0]])
         if len(command) > 1:
-            pharse(" ".join(command[1:]), known, True)
+            pharse_p2(" ".join(command[1:]), known, True)
         else:
             out(known)
         return
     elif command[0] in keymap.c1map:
         known[1].append(keymap.c1map[command[0]])
         if len(command) > 1:
-            pharse(" ".join(command[1:]), known, True)
+            pharse_p2(" ".join(command[1:]), known, True)
         else:
             out(known)
         return
     elif command[0] in keymap.c2map:
-        pharse(keymap.c2map[command[0]] + " " + " ".join(command[1:]), known, True)
+        pharse_p2(keymap.c2map[command[0]] + " " + " ".join(command[1:]), known, True)
         return
     elif command[0] in aliasmap:
-        pharse(aliasmap[command[0]] + " " + " ".join(command[1:]), known, True)
+        pharse_p2(aliasmap[command[0]] + " " + " ".join(command[1:]), known, True)
         return
     else:
         eprint('Could not find "' + command[0] + '"')
@@ -91,15 +104,13 @@ def out(ccl):
 
 
 def main():
-    global last_line
     if piargs.input is not None:
         file1 = open(piargs.input, "r")
         while True:
             line = file1.readline()
             if not line:
                 break
-            pharse(line.strip(), [[], []], False)
-            last_line = line
+            parse_p1(line)
         file1.close()
     else:
         while True:
@@ -109,8 +120,7 @@ def main():
                 break
             if not line:
                 break
-            pharse(line.strip(), [[], []], False)
-            last_line = line
+            pharse_p1(line)
 
 
 if __name__ == "__main__":
