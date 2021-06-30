@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import argparse
+import readline
 from importlib import import_module
 from time import sleep
 import sys
