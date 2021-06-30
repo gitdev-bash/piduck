@@ -107,6 +107,7 @@ def main():
             try:
                 line = input("d# ")
             except EOFError:
+                print("exit")
                 break
             if not line:
                 break
