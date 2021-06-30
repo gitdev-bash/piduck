@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import argparse
+import readline
 from importlib import import_module
 from time import sleep
 import sys
@@ -115,8 +116,9 @@ def main():
     else:
         while True:
             try:
-                line = input()
+                line = input("d# ")
             except EOFError:
+                print("EOF")
                 break
             if not line:
                 break
@@ -172,5 +174,6 @@ if __name__ == "__main__":
     try:
         main()
     except KeyboardInterrupt:
+        print("EOF")
         pass
     exit(0)
