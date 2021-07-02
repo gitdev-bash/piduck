@@ -56,15 +56,21 @@ ls /sys/class/udc > UDC
 Press Ctrl-D to exit  
 `reboot` reboot to activate the changes
 ### Install
-Also run these commands as root!
+Run these as a sudo user or root!
 
-`mkdir /etc/piduck`
+#### if you have curl
 
-`wget -O /etc/piduck/piduck.py https://raw.githubusercontent.com/gitdev-bash/piduck/main/piduck.py`
+`curl -sSL https://raw.githubusercontent.com/gitdev-bash/piduck/master/install.sh | bash`
 
-`chmod 555 /etc/piduck/piduck.py`
+#### if you have wget  
 
-`ln -s /etc/piduck/piduck.py /usr/bin/piduck`
+`wget -q -O - https://raw.githubusercontent.com/gitdev-bash/piduck/master/install.sh | bash`
+
+#### If you already have it locally
+
+`chmod 755 install.sh`  
+`./install.sh`
+
 ## Usage
 Syntax of [Ducky-Script-v1][Ducky-Script-v1-Syntax]  
 Root is needed (again)
