@@ -58,7 +58,7 @@ Press Ctrl-D to exit
 ### Install
 Run these as a sudo user or root!
 
-**If you want to reinstall or update piduck, please rerun the script.**
+If you want to reinstall or update piduck, please rerun the script.
 
 #### if you have curl
 
@@ -80,6 +80,8 @@ Root is needed (again)
 `piduck -i inject.txt`
 ### Input from standard input
 `piduck`
+
+Exit with `CTRL C` or `CTRL D`
 ### Set Layout
 `piduck -l xx`
 ### Help
