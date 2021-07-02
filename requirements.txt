@@ -1,5 +1,3 @@
 argparse
 readline
 importlib
-time
-sys
