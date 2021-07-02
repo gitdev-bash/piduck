@@ -57,6 +57,7 @@ Press Ctrl-D to exit
 `reboot` reboot to activate the changes
 ### Install
 Run these as a sudo user or root!
+If you want to reinstall or update piduck rerun the below script.
 
 #### if you have curl
 
