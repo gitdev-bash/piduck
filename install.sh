@@ -26,26 +26,38 @@ elif [[ "$(which wget)" != "" && "$(which unzip)" != "" ]]
 then
     echo "Using wget and unzip"
     wget -q -O /tmp/piduck.zip https://github.com/gitdev-bash/piduck/zipball/master/
-    unzip /tmp/piduck.zip
+    unzip /tmp/piduck.zip /tmp/
     rm /tmp/piduck.zip
+    mkdir /tmp/piduck
+    mv /tmp/gitdev-bash-piduck-*/* /tmp/piduck/
+    rm -rf /tmp/gitdev-bash-piduck-*/
 elif [[ "$(which curl)" != "" && "$(which unzip)" != "" ]]
 then
     echo "Using curl and unzip"
     curl -sSL -o /tmp/piduck.zip https://github.com/gitdev-bash/piduck/zipball/master/
-    unzip /tmp/piduck.zip
+    unzip /tmp/piduck.zip /tmp/
     rm /tmp/piduck.zip
+    mkdir /tmp/piduck
+    mv /tmp/gitdev-bash-piduck-*/* /tmp/piduck/
+    rm -rf /tmp/gitdev-bash-piduck-*/
 elif [[ "$(which wget)" != "" && "$(which gunzip)" != "" ]]
 then
     echo "Using wget and gunzip"
-    wget -q -O /tmp/piduck.zip https://github.com/gitdev-bash/piduck/tarball/master/
+    wget -q -O /tmp/piduck.tar.gz https://github.com/gitdev-bash/piduck/tarball/master/
     tar -xzvf /tmp/piduck.tar.gz
     rm /tmp/piduck.tar.gz
+    mkdir /tmp/piduck
+    mv /tmp/gitdev-bash-piduck-*/* /tmp/piduck/
+    rm -rf /tmp/gitdev-bash-piduck-*/
 elif [[ "$(which curl)" != "" && "$(which gunzip)" != "" ]]
 then
     echo "Using curl and gunzip"
-    curl -sSL -o /tmp/piduck.zip https://github.com/gitdev-bash/piduck/tarball/master/
+    curl -sSL -o /tmp/piduck.tar.gz https://github.com/gitdev-bash/piduck/tarball/master/
     tar -xzvf /tmp/piduck.tar.gz
     rm /tmp/piduck.tar.gz
+    mkdir /tmp/piduck
+    mv /tmp/gitdev-bash-piduck-*/* /tmp/piduck/
+    rm -rf /tmp/gitdev-bash-piduck-*/
 else
     echo "Ops missing dependencies"
     exit 2
