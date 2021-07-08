@@ -163,7 +163,7 @@ c2map = {
     ":": "SHIFT .",
     ">": "SHIFT <",
     "|": "RALT <",
-    "µ": "RALT µ",
+    "µ": "RALT m",
     "@": "RALT q",
     "€": "RALT e",
     "Ü": "SHIFT ü",
