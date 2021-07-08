@@ -85,7 +85,7 @@ def pharse_p2(line, known, deltrue):
         return
     elif command[0] == "CHAR":
         if command[1].isdigit():
-            known[1].append(command[1])
+            known[1].append(int(command[1]))
             if len(command) > 2:
                 pharse_p2(" ".join(command[2:]), known, True)
             else:
