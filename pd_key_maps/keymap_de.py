@@ -166,6 +166,9 @@ c2map = {
     "µ": "RALT µ",
     "@": "RALT q",
     "€": "RALT e",
+    "Ü": "SHIFT ü",
+    "Ö": "SHIFT ö",
+    "Ä": "SHIFT ä",
 }
 for i in range(65, 91):
     c2map[chr(i)] = "SHIFT " + chr(i).lower()
