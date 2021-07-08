@@ -153,7 +153,7 @@ c2map = {
     "<": "SHIFT ,",
     ">": "SHIFT .",
     "?": "SHIFT /",
-    '"': "SHIFT '",
+    #    '"': "SHIFT '",
     ":": "SHIFT ;",
     "{": "SHIFT [",
     "}": "SHIFT ]",
