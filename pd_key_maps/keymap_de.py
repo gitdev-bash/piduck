@@ -1,4 +1,4 @@
-#!/bin/python3
+#!/usr/bin/env python3
 commap = {
     "LCTRL": 1,
     "LSHIFT": 2,
