@@ -106,6 +106,7 @@ c1map = {
     # kp-9:"61",
     # kp-0:"62",
     # kp-period:"63",
+    "<": 100,
     # application:"65",
     # power:"66",
     # kp-equal:"67",
@@ -170,6 +171,8 @@ c2map = {
     "=": "SHIFT 0",
     "}": "RALT 0",
     #    "°": "SHIFT RALT 0", Duplicate
+    ">": "SHIFT <",
+    "|": "RALT <",
     "?": "SHIFT ß",
     "\\": "RALT ß",
     "¿": "SHIFT RALT ß",
