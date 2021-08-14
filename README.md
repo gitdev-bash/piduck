@@ -74,7 +74,8 @@ If you want to reinstall or update piduck, please rerun the script.
 `./install.sh`
 
 ## Usage
-Syntax of [Ducky-Script-v1][Ducky-Script-v1-Syntax]  
+Syntax of [Ducky-Script-v1][Ducky-Script-v1-Syntax] with additions:  
+CHAR: Uses key with the specified hid keyboard id as argument  
 Root is needed (again)
 ### Using Script File
 `piduck -i inject.txt`

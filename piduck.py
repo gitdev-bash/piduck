@@ -83,6 +83,14 @@ def pharse_p2(line, known, deltrue):
     elif command[0] in aliasmap:
         pharse_p2(aliasmap[command[0]] + " " + " ".join(command[1:]), known, True)
         return
+    elif command[0] == "CHAR":
+        if command[1].isdigit():
+            known[1].append(int(command[1]))
+            if len(command) > 2:
+                pharse_p2(" ".join(command[2:]), known, True)
+            else:
+                out(known)
+            return
     else:
         eprint('Could not find "' + command[0] + '"')
         exit(2)
